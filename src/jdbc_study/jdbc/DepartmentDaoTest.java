@@ -1,6 +1,9 @@
 package jdbc_study.jdbc;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -28,6 +31,7 @@ public class DepartmentDaoTest {
 		dao = null;
 	}
 
+	//select 테스트
 	@Test
 	public void testSelectDepartmentByAll() {
 		List<Department> list = dao.selectDepartmentByAll();
@@ -40,4 +44,20 @@ public class DepartmentDaoTest {
 		Assert.assertNotEquals(0, list.size());
 	}
 
+	//insert 테스트
+	@Test
+	public void testInsertDepartment() {
+		Department newDept = new Department(4, "자바개발", 15);
+		try {
+			int res = dao.insertDepartment(newDept);
+			//확인, 1개 추가했으니까(4,"자바개발",15) 기댓값:1, 정상적으로 추가되면 1, res(실행결과값) 만약 1=1이면? 추가됐음을 의미
+			Assert.assertEquals(1, res);
+		} catch (SQLException e) {
+			System.out.println(e.getErrorCode());	//Dupulicate(중복) => 에러코드 1062
+			e.printStackTrace();
+			if(e.getErrorCode() == 1062) {
+				JOptionPane.showMessageDialog(null, "이미 존재하는 부서입니다.");
+			}
+		}
+	}
 }

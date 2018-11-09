@@ -8,12 +8,15 @@ import javax.swing.JOptionPane;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import jdbc_study.dao.DepartmentDao;
 import jdbc_study.dao.DepartmentDaoImpl;
 import jdbc_study.dto.Department;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartmentDaoTest {
 	static DepartmentDao dao;
 	
@@ -33,7 +36,7 @@ public class DepartmentDaoTest {
 
 	//select 테스트
 	@Test
-	public void testSelectDepartmentByAll() {
+	public void test01SelectDepartmentByAll() {
 		List<Department> list = dao.selectDepartmentByAll();
 		//console창으로 확인해보기
 		for(Department dept : list) {
@@ -46,7 +49,7 @@ public class DepartmentDaoTest {
 
 	//insert 테스트
 	@Test
-	public void testInsertDepartment() {
+	public void test02InsertDepartment() {
 		Department newDept = new Department(4, "자바개발", 15);
 		try {
 			int res = dao.insertDepartment(newDept);
@@ -63,19 +66,37 @@ public class DepartmentDaoTest {
 	
 	//delete 테스트
 	@Test
-	public void testDeleteDepartment() {
-		
+	public void test05DeleteDepartment() {
+		Department delDept = new Department(4);
+		try {
+			int res = dao.deleteDepartment(delDept);
+			Assert.assertEquals(1, res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		test01SelectDepartmentByAll();
 	}
 	
 	//update 테스트
 	@Test
-	public void testUpdateDepartment() {
-		
+	public void test03UpdateDepartment() {
+		Department updateDept = new Department(1, "마케팅", 20);
+		try {
+			int res = dao.updateDepartment(updateDept);
+			Assert.assertEquals(1, res);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		test01SelectDepartmentByAll();
 	}
 	
 	//dempNo로 select 테스트
 	@Test
-	public void testSelectDepartment() {
-		
+	public void test04SelectDepartment() throws SQLException {
+		MySQLjdbcUtilTest.LOG.debug("test04SelectDepartment()");
+		Department sDept = new Department(4);
+		Department searchDept = dao.selectDepartmentByNo(sDept);
+		MySQLjdbcUtilTest.LOG.debug(searchDept);
+		Assert.assertNotNull(searchDept);
 	}
 }

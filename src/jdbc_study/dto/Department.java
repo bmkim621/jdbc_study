@@ -21,6 +21,8 @@ public class Department {
 		this.deptName = deptName;
 		this.floor = floor;
 	}
+	
+	
 
 	//getter, setter
 	public int getDeptNo() {

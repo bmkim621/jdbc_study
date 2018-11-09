@@ -70,4 +70,25 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		return res;
 	}
 
+	//삭제
+	@Override
+	public int deleteDepartment(Department department) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//변경
+	@Override
+	public int updateDepartment(Department department) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//부서번호로 검색
+	@Override
+	public Department selectDaDepartment(Department department) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

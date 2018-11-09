@@ -60,4 +60,22 @@ public class DepartmentDaoTest {
 			}
 		}
 	}
+	
+	//delete 테스트
+	@Test
+	public void testDeleteDepartment() {
+		
+	}
+	
+	//update 테스트
+	@Test
+	public void testUpdateDepartment() {
+		
+	}
+	
+	//dempNo로 select 테스트
+	@Test
+	public void testSelectDepartment() {
+		
+	}
 }

@@ -111,8 +111,6 @@ public class DepartmentDaoImpl implements DepartmentDao {
 					dept = getDepartment(rs);
 				}
 			}
-			// 확인하기
-
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

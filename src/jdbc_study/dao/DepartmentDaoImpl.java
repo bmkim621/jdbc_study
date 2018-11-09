@@ -25,6 +25,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		try(Connection conn = MySQLjdbcUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
+			//확인하기
+			LOG.debug(pstmt);
 			while(rs.next()) {
 				list.add(getDepartment(rs));
 			}
